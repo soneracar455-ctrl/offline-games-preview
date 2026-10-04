@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    Replaced by the value of the `--base-href` argument passed to
+    `flutter build web`. The preview workflow sets it to the preview
+    repository's path.
+  -->
+  <base href="/offline-games-preview/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Offline puzzle game collection.">
+
+  <!--
+    The web build exists only as an internal preview, so it must never show up
+    in search results (SPEC 9.2).
+  -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <!--
+    The preview must always be the newest build. Together with
+    `--pwa-strategy=none` (no service worker is generated at all) these stop a
+    stale copy being served from the browser cache.
+  -->
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Puzzle Collection">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>Puzzle Collection</title>
+</head>
+<body>
+  <!--
+    `serviceWorkerSettings` is deliberately omitted: with no service worker the
+    loader fetches the current build every time, which is what the preview
+    needs. The cache-busting query string forces a fresh bootstrap script even
+    when a proxy ignores the headers above.
+  -->
+  <script>
+    window.addEventListener('load', function () {
+      var script = document.createElement('script');
+      script.src = 'flutter_bootstrap.js?v=' + Date.now();
+      document.body.appendChild(script);
+    });
+  </script>
+</body>
+</html>
